@@ -1,0 +1,466 @@
+{
+  "format": "velxio-project",
+  "version": 1,
+  "boards": [
+    {
+      "id": "esp32",
+      "name": "ESP32 DevKit V1",
+      "boardKind": "esp32",
+      "x": 368.0432929343523,
+      "y": 139.93386643277034,
+      "activeFileGroupId": "group-esp32",
+      "languageMode": "micropython",
+      "serialBaudRate": 0
+    }
+  ],
+  "fileGroups": {
+    "group-esp32": [
+      {
+        "name": "main.py",
+        "content": "\nfrom machine import Pin, I2C\nimport time\nimport dht \nimport ssd1306\nsensor=dht.DHT11(Pin(16,Pin.In, Pin PULL_UP))\noled=ssd1306.SSD1306_12C(128,64,i2c)\ni2c = I2C(0, scl=Pin(22), sda=Pin (21))\nlast_valid_temp = \"--\"\nlast_valid_hum= \"--\"\ntemp_str = \"Waiting...\"\nhum_str = \"Waiting...\"\nfrom machine import Pin, I2C\n    i2c=I2C(0, scl=Pin(22), sda=Pin(21))\n    print(\"Scanning digital I2C bus...\")\n    devices=i2c.scan()\n    if len(devices) == 0\n    print(\"Error no I2C devices found\")\n    else:\n    print(\"Success! Found devices at addresses\")\nlast_sensor_read = time.ticks.ms()\nSENSOR_INTERVAL = 3000\nwhile True:\n try:\n current_time = time.ticks_ms(_)\n sensor.measure()\n last_valid_temp=str(sensor.temperature()) +\" C\"\n last_valid_hum = str(sensor.humidity())+ \"%\"\n print(\"glitch bypassed.keeping last data\")\n temp = sensor.temperature\n hum = sensor.humidity\n#Display on OLED\n oled.fill(0) \n oled.text(\"EP32 MONITOR\", 10,0)    \n oled.text(\"Temp:\"+last_valid_temp, 10, 24)\n oled.text(\"Hum: \"+;last_valid_hum,10,44)\n oled.show()\n\nexcept OSError as e:\n     print (\"Failed to read sensor Retrying...\")\n     oled.fill(0)\n     oled.text(\"Reading Sensor\",0,20)\n     oled.show()\ntime.sleep(2)\n error_78_count=0\n successful_reads=0\n while True: \n    try:\n        current_time = time.ticks_ms()\n    if time.ticks_diff(current_time, last_sensor_read)\n    try:\n        sensor.measure()\n        temp = sensor.temperature\n        hum = sensor.humidity\n      temp_str = \"Temp: {} C\".format(temp)\n      hum_str = \"Hum: {} %\".format(hum)\n        print(f\"Success #{succesful_reads}) - T: {sensor.temperature()}\")\n        except OSError as e:\n            error_78_count += 1\n            print(f\"Data corruption caught ({error_78_count} drops). Retrying..\")\n    last_sensor_read = current_time\n    \noled.fill(0)\n    oled.text(temp_str,0,20)\n    oled.text(hum_str,0,40)\n    oled.show()"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "breadboard_full_1783888544098_z3mm9ru8c",
+      "metadataId": "breadboard-full",
+      "x": -144.4531373689689,
+      "y": -104.72163664669816,
+      "properties": {
+        "rotation": 180
+      }
+    },
+    {
+      "id": "ssd1306_i2c_1783895565058_y5xuly3qb",
+      "metadataId": "ssd1306-i2c",
+      "x": 78.17389752345841,
+      "y": 37.41177773254099,
+      "properties": {
+        "protocol": "i2c"
+      }
+    },
+    {
+      "id": "resistor_1784081319575_fuy1lragm",
+      "metadataId": "resistor",
+      "x": 321.49686263103115,
+      "y": 97.7783633533018,
+      "properties": {
+        "value": "10000",
+        "rotation": 90
+      },
+      "attachedTo": {
+        "breadboardId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinMap": {
+          "1": "C13",
+          "2": "TP13"
+        }
+      }
+    },
+    {
+      "id": "dht11_1783888575185_pspg8o2pj",
+      "metadataId": "dht11",
+      "x": 350.1468626310311,
+      "y": -28.721636646698194,
+      "properties": {
+        "temperature": 25,
+        "humidity": 50
+      },
+      "attachedTo": {
+        "breadboardId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinMap": {
+          "VCC": "E15",
+          "SDA": "E12",
+          "GND": "E10"
+        }
+      }
+    }
+  ],
+  "wires": [
+    {
+      "waypoints": [],
+      "id": "wire-1783893033975",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP9",
+        "x": 432.7468626310311,
+        "y": 125.27836335330181
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP9",
+        "x": 432.7468626310311,
+        "y": 125.27836335330181
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1783894437948",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "BP56",
+        "x": -18.453137368968896,
+        "y": -45.72163664669813
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "BP56",
+        "x": -18.453137368968896,
+        "y": -45.72163664669813
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1783898946235",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "GND",
+        "x": 374.0432929343523,
+        "y": 333.93386643277034
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "BP62",
+        "x": -76.05313736896892,
+        "y": -45.72163664669813
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1783899022148",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "GND",
+        "x": 374.0432929343523,
+        "y": 333.93386643277034
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "GND",
+        "x": 144.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784080978385",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "D14",
+        "x": 384.7468626310311,
+        "y": 60.27836335330182
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP14",
+        "x": 384.7468626310311,
+        "y": 125.27836335330181
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081182898",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "GND",
+        "x": 374.0432929343523,
+        "y": 333.93386643277034
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TN6",
+        "x": 461.5468626310311,
+        "y": 112.27836335330181
+      },
+      "color": "#000000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081201067",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TN12",
+        "x": 403.9468626310311,
+        "y": 112.27836335330181
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "B12",
+        "x": 403.9468626310311,
+        "y": 80.27836335330181
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081416663",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP13",
+        "x": 394.3468626310311,
+        "y": 125.27836335330181
+      },
+      "end": {
+        "componentId": "resistor_1784081319575_fuy1lragm",
+        "pinName": "2",
+        "x": 394.3468626310312,
+        "y": 128.0783633533018
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081421776",
+      "start": {
+        "componentId": "resistor_1784081319575_fuy1lragm",
+        "pinName": "1",
+        "x": 394.3468626310311,
+        "y": 69.2783633533018
+      },
+      "end": {
+        "componentId": "resistor_1784081319575_fuy1lragm",
+        "pinName": "1",
+        "x": 394.3468626310311,
+        "y": 69.2783633533018
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081440623",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TN6",
+        "x": 461.5468626310311,
+        "y": 112.27836335330181
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TN6",
+        "x": 461.5468626310311,
+        "y": 112.27836335330181
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [
+        {
+          "x": 508.41677490357654,
+          "y": 181.00787145458787
+        },
+        {
+          "x": 508.41677490357654,
+          "y": 181.00787145458787
+        }
+      ],
+      "id": "wire-1784081469156",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "3V3",
+        "x": 502.0432929343523,
+        "y": 346.93386643277034
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP10",
+        "x": 423.1468626310311,
+        "y": 125.27836335330181
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081480648",
+      "start": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "SCL",
+        "x": 164.1738975234584,
+        "y": 48.41177773254099
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "SCL",
+        "x": 164.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081725144",
+      "start": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "VCC",
+        "x": 154.1738975234584,
+        "y": 48.41177773254099
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "VCC",
+        "x": 154.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082348902",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "22",
+        "x": 502.0432929343523,
+        "y": 181.93386643277034
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "SCL",
+        "x": 164.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082373935",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "4",
+        "x": 502.0432929343523,
+        "y": 295.93386643277034
+      },
+      "end": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "C13",
+        "x": 394.3468626310311,
+        "y": 70.27836335330181
+      },
+      "color": "#22c55e"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784081719937",
+      "start": {
+        "componentId": "dht11_1783888575185_pspg8o2pj",
+        "pinName": "VCC",
+        "x": 374.1468626310311,
+        "y": 49.278363353301806
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "VCC",
+        "x": 154.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082487030",
+      "start": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "SDA",
+        "x": 174.1738975234584,
+        "y": 48.41177773254099
+      },
+      "end": {
+        "componentId": "esp32",
+        "pinName": "21",
+        "x": 502.0432929343523,
+        "y": 219.93386643277034
+      },
+      "color": "#8B4513"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082500035",
+      "start": {
+        "componentId": "dht11_1783888575185_pspg8o2pj",
+        "pinName": "VCC",
+        "x": 374.1468626310311,
+        "y": 49.278363353301806
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "VCC",
+        "x": 154.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082693982",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP10",
+        "x": 423.1468626310311,
+        "y": 125.27836335330181
+      },
+      "end": {
+        "componentId": "dht11_1783888575185_pspg8o2pj",
+        "pinName": "VCC",
+        "x": 374.1468626310311,
+        "y": 49.278363353301806
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784082721079",
+      "start": {
+        "componentId": "breadboard_full_1783888544098_z3mm9ru8c",
+        "pinName": "TP10",
+        "x": 423.1468626310311,
+        "y": 125.27836335330181
+      },
+      "end": {
+        "componentId": "ssd1306_i2c_1783895565058_y5xuly3qb",
+        "pinName": "VCC",
+        "x": 154.1738975234584,
+        "y": 48.41177773254099
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784158453960",
+      "start": {
+        "componentId": "dht11_1783888575185_pspg8o2pj",
+        "pinName": "VCC",
+        "x": 374.1468626310311,
+        "y": 49.278363353301806
+      },
+      "end": {
+        "componentId": "esp32",
+        "pinName": "21",
+        "x": 502.0432929343523,
+        "y": 219.93386643277034
+      },
+      "color": "#cc0000"
+    },
+    {
+      "waypoints": [],
+      "id": "wire-1784158915455",
+      "start": {
+        "componentId": "esp32",
+        "pinName": "GND",
+        "x": 374.0432929343523,
+        "y": 333.93386643277034
+      },
+      "end": {
+        "componentId": "dht11_1783888575185_pspg8o2pj",
+        "pinName": "GND",
+        "x": 424.1468626310311,
+        "y": 49.278363353301806
+      },
+      "color": "#000000"
+    }
+  ],
+  "activeBoardId": "esp32",
+  "ignoreStock": false
+}

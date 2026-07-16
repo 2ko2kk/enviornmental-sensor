@@ -1,0 +1,66 @@
+# Enviornmental Sensor
+
+
+
+
+
+
+> Built in [Breadboard](https://breadboard.hackclub.com), a Hack Club program. This project took ~3.9 hours of work.
+
+
+
+## What It Does
+
+Incl. air quality, temperature, humidity, sound sensor
+
+
+## How It Works
+
+The circuit is captured in `breadboard-project.json`, and the firmware that runs it is in the `firmware/` folder.
+
+
+## How To Use It
+
+This is a failed temp and humidity sensor/tried to use time intervals didnt work :)
+
+
+## Demo
+
+- **Simulate it live:** [https://breadboard.hackclub.com/share/132](https://breadboard.hackclub.com/share/132), runs the firmware in the Breadboard simulator
+- **View the design:** [https://taniwankenobi.github.io/breadboard-plays/p/132/](https://taniwankenobi.github.io/breadboard-plays/p/132/)
+
+
+## Schematic
+
+The editor snapshot is in `breadboard-project.json`.
+
+
+## Bill of Materials
+
+| Part | Quantity |
+| --- | --- |
+| breadboard-full | 1 |
+| dht11 | 1 |
+| resistor | 1 |
+| ssd1306-i2c | 1 |
+
+
+## Firmware
+
+Firmware files are in the `firmware/` folder.
+
+
+## Build Journal
+
+Build journal entries are kept in [`journals.md`](journals.md).
+
+
+---
+
+
+
+*Made in [Breadboard](https://breadboard.hackclub.com) — 3.9h of work*
+
+
+
+<p align="center"><img src="https://cdn.hackclub.com/019efae7-6857-75a2-8bc1-2618087b4eae/a%20bred%20tanuki%20(3).png" width="64" alt="Breadboard mascot" /></p>

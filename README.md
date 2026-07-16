@@ -2,7 +2,7 @@
 
 
 
-
+![Enviornmental Sensor](screenshot.webp)
 
 
 > Built in [Breadboard](https://breadboard.hackclub.com), a Hack Club program. This project took ~3.9 hours of work.
@@ -11,7 +11,7 @@
 
 ## What It Does
 
-Incl. air quality, temperature, humidity, sound sensor
+Failed project (wish I could edit on it more/but ran out of time, have other stuff to do), should measure temp and humidity
 
 
 ## How It Works
